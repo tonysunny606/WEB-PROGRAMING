@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+    table {
+    border:10px;
+    }
+
+    td,
+    th {
+      border: 1px solid black;
+      padding: 3px;
+      text-align: center;
+    }
+
+    th {
+      font-weight: bold;
+      background-color:pink;
+    }
+</style>
+</head>
+<body bgcolor="yellow">
+<center><h1>CALENDER</h1></center><br><br>
+
+Enter a year:<input type="text" id="year" placeholder="Enter a year" /><br><br>
+<input type="button" value="OK" onclick=" createCalendar(calendar);" />
+  <div id="calendar"></div>
+
+  <script>
+    function createCalendar(elem) {
+      var year = document.getElementById("year").value;
+
+      for (let mon = 0; mon < 12; mon++) {
+
+        let d = new Date(year, mon);
+
+        let table = '<center><strong>' + months[mon] + '</center></strong><br><br>';
+        table += '<center><table><tr><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th>SAT</th><th>SUN</th></tr><tr>';
+
+      
+        for (let i = 0; i < getDay(d); i++) {
+          table += '<td></td>';
+        }
+
+        
+        while (d.getMonth() == mon) {
+          table += '<td>' + d.getDate() + '</td>';
+
+          if (getDay(d) % 7 == 6) { 
+            table += '</tr><tr>';
+          }
+
+          d.setDate(d.getDate() + 1);
+        }
+
+        
+        if (getDay(d) != 0) {
+          for (let i = getDay(d); i < 7; i++) {
+            table += '<td></td>';
+          }
+        }
+
+        
+        table += '</tr></table></center><br>';
+
+        elem.insertAdjacentHTML('beforeend', table);
+      }
+    }
+
+    function getDay(date) { 
+      let day = date.getDay();
+      if (day == 0) day = 7;
+      return day - 1;
+    }
+
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+
+  </script>
+  
+</body>
+</html>
