@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>Image change using mouse over</title>
+<style>
+.responsive
+{
+width:750px;
+}
+</style>
+</head>
+<body>
+<script>
+function changeImage(x,image)
+{
+	if(x==1)
+	{	
+		image.src='car1.jpg';
+		}
+	if(x==2)
+	{
+		image.src='car2.jpeg';
+	}}
+	</script>
+<img src="car2.jpeg" class="responsive" onmouseover="changeImage(1,this)" onmouseout="changeImage(2,this)">
+</body>
+</html>
